@@ -2,11 +2,11 @@
   "name": "graphql-service",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "lint": "eslint \"**/*.ts\"",
     "start": "tsc && node dist/index.js",
-    "start:dev": "nodemon index.ts"
+    "start:dev": "nodemon src/index.ts"
   },
   "repository": {
     "type": "git",
