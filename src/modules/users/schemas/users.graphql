@@ -1,3 +1,7 @@
+type JWT {
+    jwt: String!
+}
+
 type User {
     id: ID!
     firstName: String
@@ -7,6 +11,6 @@ type User {
 }
 
 type Query {
-    users(limit: Int, offset: Int): [User]
+    jwt(email: String!, password: String!): JWT
     user(id: ID!): User
 }
