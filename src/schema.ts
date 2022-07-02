@@ -17,6 +17,13 @@ const getSchema = () => {
         const result = fs.readFileSync(item, 'utf8');
         defs.push(result);
     });
+
+    defs.push(`
+        type Delete {
+            acknowledged: Boolean
+            deletedCount: Int
+        }
+    `)
 }
 
 getSchema();
