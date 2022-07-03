@@ -1,8 +1,18 @@
-import { ApolloServer } from 'apollo-server';
+const { ApolloServer } = require('apollo-server');
 import { typeDefs } from './schema';
 import * as dotenv from 'dotenv';
+import resolvers from './resolvers';
+import { TrackAPI } from './modules/tracks/services/tracks.services';
 
-const server = new ApolloServer({ typeDefs });
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    dataSources: () => {
+        return {
+            trackAPI: new TrackAPI()
+        };
+    }
+});
 
 dotenv.config();
 
