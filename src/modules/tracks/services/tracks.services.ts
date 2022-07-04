@@ -10,10 +10,6 @@ export class TrackAPI extends RESTDataSource {
         return this.get('/').then((res: { items: any[] }) =>
             res.items.map((track: any) => ({
                 ...track,
-                id: track._id,
-                bands: track.bandsIds,
-                artists: track.artistsIds,
-                genreIds: track.genreIds,
             }))
         )
     }

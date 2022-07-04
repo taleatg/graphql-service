@@ -3,8 +3,12 @@ export const trackResolvers = {
         tracks: (_: any, __: any, {dataSources}: any) => {
             return dataSources.trackAPI.getTracks();
         },
-        track: (_: any, {trackId}: { trackId: string }, { dataSources }: any) => {
-            return dataSources.trackAPI.getTrack(trackId);
+        track: (_: any, {id}: { id: string }, { dataSources }: any) => {
+            return dataSources.trackAPI.getTrack(id);
         },
     },
+
+    Track: {
+        id: (parent: { _id: string; }) => parent._id,
+    }
 };
