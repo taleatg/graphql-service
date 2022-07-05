@@ -7,6 +7,7 @@ import { AlbumAPI } from './modules/albums/services/albums.services';
 import { ArtistAPI } from './modules/artists/services/artists.services';
 import { BandAPI } from './modules/bands/services/bands.services';
 import { GenreAPI } from './modules/genres/services/genres.services';
+import { UserAPI } from './modules/users/services/users.services';
 
 const server = new ApolloServer({
     typeDefs,
@@ -18,6 +19,7 @@ const server = new ApolloServer({
             bandAPI: new BandAPI(),
             genreAPI: new GenreAPI(),
             trackAPI: new TrackAPI(),
+            userAPI: new UserAPI(),
         };
     }
 });
