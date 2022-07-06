@@ -1,3 +1,5 @@
+import { Artist } from '../../../interfaces';
+
 const { RESTDataSource } = require('apollo-datasource-rest');
 
 export class ArtistAPI extends RESTDataSource {
@@ -7,9 +9,10 @@ export class ArtistAPI extends RESTDataSource {
     }
 
     getArtists() {
-        return this.get('/').then((res: { items: any[] }) =>
-            res.items.map((artist: any) => ({
+        return this.get('/').then((res: { items: Artist[] }) =>
+            res.items.map((artist: Artist) => ({
                 ...artist,
+                bands: artist.bandsIds,
             }))
         )
     }

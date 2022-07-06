@@ -1,7 +1,10 @@
 type Member {
-  artist: String
-  instrument: String
-  years: String
+    id: ID!
+    firstName: String,
+    secondName: String,
+    middleName: String,
+    instrument: String
+    years: [String]
 }
 
 type Band {

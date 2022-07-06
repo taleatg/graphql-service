@@ -1,3 +1,5 @@
+import { Band } from '../../../interfaces';
+
 const { RESTDataSource } = require('apollo-datasource-rest');
 
 export class BandAPI extends RESTDataSource {
@@ -7,9 +9,10 @@ export class BandAPI extends RESTDataSource {
     }
 
     getBands() {
-        return this.get('/').then((res: { items: any[] }) =>
-            res.items.map((band: any) => ({
+        return this.get('/').then((res: { items: Band[] }) =>
+            res.items.map((band: Band) => ({
                 ...band,
+                genres: band.genresIds,
             }))
         )
     }
