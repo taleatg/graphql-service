@@ -1,5 +1,4 @@
 type Member {
-    id: ID!
     firstName: String,
     secondName: String,
     middleName: String,
