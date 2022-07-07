@@ -66,6 +66,16 @@ export interface Album {
     image: string;
 }
 
+export interface AlbumInput {
+    name?: string;
+    released?: number;
+    artistsIds?: string[];
+    bandsIds?: string[];
+    trackIds?: string[];
+    genresIds?: string[];
+    image?: string;
+}
+
 export interface Favorite {
     _id: string;
     userId: string;

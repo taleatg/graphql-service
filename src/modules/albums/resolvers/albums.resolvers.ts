@@ -1,4 +1,4 @@
-import { Artist, Band, Genre, Track } from '../../../interfaces';
+import { AlbumInput, Artist, Band, Genre, Track } from '../../../interfaces';
 
 export const albumResolvers = {
     Query: {
@@ -60,5 +60,22 @@ export const albumResolvers = {
 
             return allGenres;
         }
+    },
+
+    Mutation: {
+        createAlbum: (_: any, { createAlbumInput }: { createAlbumInput: AlbumInput }, { dataSources }: any) => {
+            if (!dataSources.albumAPI.context.token) return;
+            return dataSources.albumAPI.createAlbum(createAlbumInput);
+        },
+
+        updateAlbum: (_: any, { updateAlbumInput, id }: { updateAlbumInput: AlbumInput, id: string }, { dataSources }: any) => {
+            if (!dataSources.albumAPI.context.token) return;
+            return dataSources.albumAPI.updateAlbum(id, updateAlbumInput);
+        },
+
+        deleteAlbum: (_: any, { id }: { id: string }, { dataSources }: any) => {
+            if (!dataSources.albumAPI.context.token) return;
+            return dataSources.albumAPI.deleteAlbum(id);
+        },
     }
 };

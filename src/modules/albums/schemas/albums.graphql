@@ -12,32 +12,10 @@ type Album {
 input AlbumInput {
     name: String
     released: Int
-    artists: [ArtistsInput]
-    bands: [BandInput]
-    tracks: [TrackInput]
-    genres: [GenreInput]
-    image: String
-}
-
-input CreateAlbumInput {
-    id: ID!
-    name: String
-    released: Int
-    artists: [ArtistsInput]
-    bands: [BandInput]
-    tracks: [TrackInput]
-    genres: [GenreInput]
-    image: String
-}
-
-input UpdateAlbumInput {
-    id: ID!
-    name: String
-    released: Int
-    artists: [ArtistsInput]
-    bands: [BandInput]
-    tracks: [TrackInput]
-    genres: [GenreInput]
+    artistsIds: [ID]
+    bandsIds: [ID]
+    trackIds: [ID]
+    genresIds: [ID]
     image: String
 }
 
@@ -47,7 +25,7 @@ type Query {
 }
 
 type Mutation {
-  createAlbum(createAlbumInput: CreateAlbumInput): Album!
-  updateAlbum(updateAlbumInput: UpdateAlbumInput): Album!
+  createAlbum(createAlbumInput: AlbumInput): Album
+  updateAlbum(updateAlbumInput: AlbumInput, id: ID!): Album
   deleteAlbum(id: ID!): Delete
 }

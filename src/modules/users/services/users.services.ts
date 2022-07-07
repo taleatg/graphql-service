@@ -1,4 +1,4 @@
-import { RESTDataSource } from 'apollo-datasource-rest';
+import { RequestOptions, RESTDataSource } from 'apollo-datasource-rest';
 
 export class UserAPI extends RESTDataSource  {
     constructor() {
@@ -6,9 +6,13 @@ export class UserAPI extends RESTDataSource  {
         this.baseURL = process.env.USERS_URL;
     }
 
+    willSendRequest(request: RequestOptions) {
+        request.headers.set('Authorization', `Bearer ${this.context.token}`);
+    }
+
     async getJWT(email: string, password: string) {
         const data = await this.post('/login', { email, password });
-        data.id = data._id;
+        this.context.token = data.jwt;
         return data;
     }
 

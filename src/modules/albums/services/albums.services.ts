@@ -1,4 +1,4 @@
-import { Album } from '../../../interfaces';
+import { Album, AlbumInput } from '../../../interfaces';
 
 const { RESTDataSource } = require('apollo-datasource-rest');
 
@@ -22,5 +22,17 @@ export class AlbumAPI extends RESTDataSource {
 
     getAlbum(albumId: string) {
         return this.get(`/${albumId}`);
+    }
+
+    async createAlbum(data: AlbumInput) {
+        return await this.post('/', { ...data }, { headers: { authorization: this.context.token } });
+    }
+
+    async updateAlbum(id: string, data: AlbumInput) {
+        return await this.put(`/${id}`, { ...data }, { headers: { authorization: this.context.token } });
+    }
+
+    async deleteAlbum(id: string) {
+        return await this.delete(`/${id}`, {}, { headers: { authorization: this.context.token } });
     }
 }
