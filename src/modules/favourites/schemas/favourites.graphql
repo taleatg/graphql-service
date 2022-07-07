@@ -7,6 +7,21 @@ type Favourites {
     tracks: [Track]
 }
 
+input FavouritesInput {
+    userId: ID
+    bands: [BandInput]
+    genres: [GenreInput]
+    artists: [ArtistsInput]
+    tracks: [TrackInput]
+}
+
 type Query {
     favourites(limit: Int, offset: Int): [Favourites]
+}
+
+type Mutation {
+  addTrackToFavourites(addTrackToFavourites: FavouritesInput): Favourites
+  addBandToFavourites(addBandToFavourites: FavouritesInput): Favourites
+  addArtistToFavourites(addArtistToFavourites: FavouritesInput): Favourites
+  addGenreToFavourites(addGenreToFavourites: FavouritesInput): Favourites
 }

@@ -29,30 +29,13 @@ input BandInput {
     genres: [GenreInput]
 }
 
-input CreateBandInput {
-  name: String!
-  origin: String
-  members: [MemberInput]
-  website: String
-  genresIds: [String]
-}
-
-input UpdateBandInput {
-  id: ID!
-  name: String
-  origin: String
-  members: [MemberInput]
-  website: String
-  genresIds: [String]
-}
-
 type Query {
   bands(limit: Int, offset: Int): [Band]
   band(id: ID!): Band
 }
 
 type Mutation {
-  createBand(createBandInput: CreateBandInput): Band!
-  updateBand(updateBandInput: UpdateBandInput): Band!
+  createBand(createBandInput: BandInput): Band
+  updateBand(updateBandInput: BandInput, id: ID!): Band
   deleteBand(id: ID!): Delete
 }
