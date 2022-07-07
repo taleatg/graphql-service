@@ -9,10 +9,10 @@ type Favourites {
 
 input FavouritesInput {
     userId: ID
-    bands: [BandInput]
-    genres: [GenreInput]
-    artists: [ArtistsInput]
-    tracks: [TrackInput]
+    bandsIds: [ID]
+    genresIds: [ID]
+    artistsIds: [ID]
+    trackIds: [ID]
 }
 
 type Query {

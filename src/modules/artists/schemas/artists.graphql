@@ -17,7 +17,7 @@ input ArtistsInput {
     birthDate: String
     birthPlace: String
     country: String
-    bands: [BandInput]
+    bandsIds: [ID]
     instruments: String
 }
 

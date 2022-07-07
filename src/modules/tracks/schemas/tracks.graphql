@@ -12,10 +12,10 @@ type Track {
 input TrackInput {
     title: String!
     albums: [BandInput]
-    bands: [BandInput]
+    bandsIds: [ID]
     duration: Int
     released: Int
-    genres: [GenreInput]
+    genresIds: [ID]
 }
 
 type Query {
