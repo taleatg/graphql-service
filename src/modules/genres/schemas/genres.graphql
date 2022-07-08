@@ -19,7 +19,7 @@ type Query {
 }
 
 type Mutation {
-    createGenre(name: String, description: String, country: String, year: Int): Genre
-    updateGenre(id: ID!, name: String, description: String, country: String, year: Int): Genre
+    createGenre(createGenreInput: GenreInput): Genre
+    updateGenre(updateGenreInput: GenreInput, id: ID!): Genre
     deleteGenre(id: ID!): Delete
 }

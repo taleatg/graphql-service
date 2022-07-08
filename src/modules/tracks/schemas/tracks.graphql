@@ -11,7 +11,8 @@ type Track {
 
 input TrackInput {
     title: String!
-    albums: [BandInput]
+    albumId: ID
+    artistsIds: [ID]
     bandsIds: [ID]
     duration: Int
     released: Int

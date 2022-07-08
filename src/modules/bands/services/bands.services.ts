@@ -1,4 +1,4 @@
-import { Band } from '../../../interfaces';
+import { Band, BandInput } from '../../../interfaces';
 
 const { RESTDataSource } = require('apollo-datasource-rest');
 
@@ -19,5 +19,17 @@ export class BandAPI extends RESTDataSource {
 
     getBand(bandId: string) {
         return this.get(`/${bandId}`);
+    }
+
+    async createBand(data: BandInput) {
+        return await this.post('/', { ...data }, { headers: { authorization: this.context.token } });
+    }
+
+    async updateBand(id: string, data: BandInput) {
+        return await this.put(`/${id}`, { ...data }, { headers: { authorization: this.context.token } });
+    }
+
+    async deleteBand(id: string) {
+        return await this.delete(`/${id}`, {}, { headers: { authorization: this.context.token } });
     }
 }

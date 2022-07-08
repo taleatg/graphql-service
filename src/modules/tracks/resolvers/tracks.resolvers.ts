@@ -1,4 +1,4 @@
-import { Album, Artist, Band, Genre } from '../../../interfaces';
+import { Artist, Band, Genre, TrackInput } from '../../../interfaces';
 
 export const trackResolvers = {
     Query: {
@@ -51,6 +51,23 @@ export const trackResolvers = {
             }
 
             return allArtists;
+        },
+    },
+
+    Mutation: {
+        createTrack: (_: any, { createTrackInput }: { createTrackInput: TrackInput }, { dataSources }: any) => {
+            if (!dataSources.trackAPI.context.token) return;
+            return dataSources.trackAPI.createTrack(createTrackInput);
+        },
+
+        updateTrack: (_: any, { updateTrackInput, id }: { updateTrackInput: TrackInput, id: string }, { dataSources }: any) => {
+            if (!dataSources.trackAPI.context.token) return;
+            return dataSources.trackAPI.updateTrack(id, updateTrackInput);
+        },
+
+        deleteTrack: (_: any, { id }: { id: string }, { dataSources }: any) => {
+            if (!dataSources.trackAPI.context.token) return;
+            return dataSources.trackAPI.deleteTrack(id);
         },
     }
 };

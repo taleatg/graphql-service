@@ -1,4 +1,4 @@
-import { Band } from '../../../interfaces';
+import { ArtistInput, Band } from '../../../interfaces';
 
 export const artistResolvers = {
     Query: {
@@ -23,6 +23,23 @@ export const artistResolvers = {
             }
 
             return allBands;
+        },
+    },
+
+    Mutation: {
+        createArtist: (_: any, { createArtistInput }: { createArtistInput: ArtistInput }, { dataSources }: any) => {
+            if (!dataSources.artistAPI.context.token) return;
+            return dataSources.artistAPI.createArtist(createArtistInput);
+        },
+
+        updateArtist: (_: any, { updateArtistInput, id }: { updateArtistInput: ArtistInput, id: string }, { dataSources }: any) => {
+            if (!dataSources.artistAPI.context.token) return;
+            return dataSources.artistAPI.updateArtist(id, updateArtistInput);
+        },
+
+        deleteArtist: (_: any, { id }: { id: string }, { dataSources }: any) => {
+            if (!dataSources.artistAPI.context.token) return;
+            return dataSources.artistAPI.deleteArtist(id);
         },
     }
 };

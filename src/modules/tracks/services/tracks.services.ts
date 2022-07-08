@@ -1,3 +1,5 @@
+import { TrackInput } from "../../../interfaces";
+
 const { RESTDataSource } = require('apollo-datasource-rest');
 
 export class TrackAPI extends RESTDataSource {
@@ -20,5 +22,17 @@ export class TrackAPI extends RESTDataSource {
 
     getTrack(trackId: string) {
         return this.get(`/${trackId}`);
+    }
+
+    async createTrack(data: TrackInput) {
+        return await this.post('/', { ...data }, { headers: { authorization: this.context.token } });
+    }
+
+    async updateTrack(id: string, data: TrackInput) {
+        return await this.put(`/${id}`, { ...data }, { headers: { authorization: this.context.token } });
+    }
+
+    async deleteTrack(id: string) {
+        return await this.delete(`/${id}`, {}, { headers: { authorization: this.context.token } });
     }
 }

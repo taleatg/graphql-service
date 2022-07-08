@@ -10,6 +10,17 @@ export interface Artist {
     instruments: string[];
 }
 
+export interface ArtistInput {
+    firstName?: string;
+    secondName?: string;
+    middleName?: string;
+    birthDate?: string;
+    birthPlace?: string;
+    country?: string;
+    bandsIds?: string[]
+    instruments?: string[];
+}
+
 export interface User {
     _id: string;
     firstName: string;
@@ -36,12 +47,27 @@ export interface Band {
     genresIds: string[];
 }
 
+export interface BandInput {
+    name?: string;
+    origin?: string;
+    membersId?: Member[];
+    website?: string;
+    genresIds?: string[];
+}
+
 export interface Genre {
     _id: string;
     name: string;
     description: string;
     country: string;
     year: string;
+}
+
+export interface GenreInput {
+    name?: string;
+    description?: string;
+    country?: string;
+    year?: string;
 }
 
 export interface Track {
@@ -53,6 +79,16 @@ export interface Track {
     duration: number;
     released: number;
     genresIds: string[];
+}
+
+export interface TrackInput {
+    title?: string;
+    albumId?: string;
+    artistsIds?: string[];
+    bandsIds?: string[];
+    duration?: number;
+    released?: number;
+    genresIds?: string[];
 }
 
 export interface Album {

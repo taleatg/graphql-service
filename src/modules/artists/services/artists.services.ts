@@ -1,4 +1,4 @@
-import { Artist } from '../../../interfaces';
+import { Artist, ArtistInput } from '../../../interfaces';
 
 const { RESTDataSource } = require('apollo-datasource-rest');
 
@@ -19,5 +19,17 @@ export class ArtistAPI extends RESTDataSource {
 
     getArtist(artistId: string) {
         return this.get(`/${artistId}`);
+    }
+
+    async createArtist(data: ArtistInput) {
+        return await this.post('/', { ...data }, { headers: { authorization: this.context.token } });
+    }
+
+    async updateArtist(id: string, data: ArtistInput) {
+        return await this.put(`/${id}`, { ...data }, { headers: { authorization: this.context.token } });
+    }
+
+    async deleteArtist(id: string) {
+        return await this.delete(`/${id}`, {}, { headers: { authorization: this.context.token } });
     }
 }

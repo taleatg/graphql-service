@@ -1,4 +1,4 @@
-import { Genre } from '../../../interfaces';
+import { BandInput, Genre } from '../../../interfaces';
 
 export const bandResolvers = {
     Query: {
@@ -23,6 +23,23 @@ export const bandResolvers = {
             }
 
             return allGenres;
+        },
+    },
+
+    Mutation: {
+        createBand: (_: any, { createBandInput }: { createBandInput: BandInput }, { dataSources }: any) => {
+            if (!dataSources.bandAPI.context.token) return;
+            return dataSources.bandAPI.createBand(createBandInput);
+        },
+
+        updateBand: (_: any, { updateBandInput, id }: { updateBandInput: BandInput, id: string }, { dataSources }: any) => {
+            if (!dataSources.bandAPI.context.token) return;
+            return dataSources.bandAPI.updateBand(id, updateBandInput);
+        },
+
+        deleteBand: (_: any, { id }: { id: string }, { dataSources }: any) => {
+            if (!dataSources.bandAPI.context.token) return;
+            return dataSources.bandAPI.deleteBand(id);
         },
     }
 };
