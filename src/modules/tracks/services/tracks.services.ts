@@ -8,7 +8,7 @@ export class TrackAPI extends RESTDataSource {
         this.baseURL = process.env.TRACKS_URL;
     }
 
-    getTracks(limit: number, offset: number) {
+    getTracks(limit = 5, offset = 0) {
         return this.get(`/?limit=${limit}&offset=${offset}`).then((res: { items: any[] }) =>
             res.items.map((track: any) => ({
                 ...track,

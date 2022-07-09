@@ -8,7 +8,7 @@ export class BandAPI extends RESTDataSource {
         this.baseURL = process.env.BANDS_URL;
     }
 
-    getBands(limit: number, offset: number) {
+    getBands(limit = 5, offset = 0) {
         return this.get(`/?limit=${limit}&offset=${offset}`).then((res: { items: Band[] }) =>
             res.items.map((band: Band) => ({
                 ...band,
