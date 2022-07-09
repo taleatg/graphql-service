@@ -2,7 +2,7 @@ import { AlbumInput, Artist, Band, Genre, Track } from '../../../interfaces';
 
 export const albumResolvers = {
     Query: {
-        albums: (_: any, __: any, {dataSources}: any) => {
+        albums: (_: any, __: any, { dataSources }: any) => {
             return dataSources.albumAPI.getAlbums();
         },
         album: (_: any, {id}: { id: string }, { dataSources }: any) => {
@@ -60,9 +60,7 @@ export const albumResolvers = {
 
             return allGenres;
         }
-    },
-
-    Mutation: {
+    },Mutation: {
         createAlbum: (_: any, { createAlbumInput }: { createAlbumInput: AlbumInput }, { dataSources }: any) => {
             if (!dataSources.albumAPI.context.token) return;
             return dataSources.albumAPI.createAlbum(createAlbumInput);
@@ -78,4 +76,6 @@ export const albumResolvers = {
             return dataSources.albumAPI.deleteAlbum(id);
         },
     }
+
+
 };

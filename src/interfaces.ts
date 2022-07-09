@@ -22,11 +22,10 @@ export interface ArtistInput {
 }
 
 export interface User {
-    _id: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-    email: string;
+    firstName?: string;
+    lastName?: string;
+    password?: string;
+    email?: string;
 }
 
 export interface Member {
@@ -110,13 +109,4 @@ export interface AlbumInput {
     trackIds?: string[];
     genresIds?: string[];
     image?: string;
-}
-
-export interface Favorite {
-    _id: string;
-    userId: string;
-    bandsIds: string[];
-    genresIds: string[];
-    artistsIds: string[];
-    tracksIds: string[];
 }
