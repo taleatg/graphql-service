@@ -8,6 +8,7 @@ import { ArtistAPI } from './modules/artists/services/artists.services';
 import { BandAPI } from './modules/bands/services/bands.services';
 import { GenreAPI } from './modules/genres/services/genres.services';
 import { UserAPI } from './modules/users/services/users.services';
+import { FavouritesAPI } from './modules/favourites/services/favourites.services';
 
 const server = new ApolloServer({
     typeDefs,
@@ -20,6 +21,7 @@ const server = new ApolloServer({
             genreAPI: new GenreAPI(),
             trackAPI: new TrackAPI(),
             userAPI: new UserAPI(),
+            favouritesAPI: new FavouritesAPI(),
         };
     },
     context: ({ req }: { req: any }) => {
