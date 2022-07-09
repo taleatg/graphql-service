@@ -1,4 +1,4 @@
-import { BandInput, Genre } from '../../../interfaces';
+import { Artist, BandInput, Genre } from '../../../interfaces';
 
 export const bandResolvers = {
     Query: {
@@ -23,6 +23,26 @@ export const bandResolvers = {
             }
 
             return allGenres;
+        },
+
+        members: async ({ members }: any, _: any, { dataSources }: any) => {
+
+            return (await Promise.allSettled(members.map((member: any) => {
+                return dataSources.artistAPI.getArtist(member._id)
+            })))
+                .map((artist, index) => {
+
+                const { value } = artist as PromiseFulfilledResult<Artist>;
+
+                return {
+                    id: value._id,
+                    firstName: value.firstName,
+                    secondName: value.secondName,
+                    middleName: value.middleName,
+                    instrument: members[index].instruments,
+                    years: members[index].years,
+                }
+            })
         },
     },
 

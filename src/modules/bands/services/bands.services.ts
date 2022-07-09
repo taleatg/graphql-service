@@ -9,11 +9,13 @@ export class BandAPI extends RESTDataSource {
     }
 
     getBands(limit = 5, offset = 0) {
-        return this.get(`/?limit=${limit}&offset=${offset}`).then((res: { items: Band[] }) =>
-            res.items.map((band: Band) => ({
-                ...band,
-                genres: band.genresIds,
-            }))
+        return this.get(`/?limit=${limit}&offset=${offset}`).then((res: { items: Band[] }) => {
+                return res.items.map((band: Band) => ({
+                    ...band,
+                    genres: band.genresIds,
+                    members: band.members,
+                }))
+            }
         )
     }
 

@@ -1,9 +1,16 @@
 type Member {
-    firstName: String,
-    secondName: String,
-    middleName: String,
-    instrument: String
-    years: Int
+  id: ID!
+  firstName: String
+  secondName: String
+  middleName: String
+  instrument: String
+  years: [String]
+}
+
+input MemberInput {
+  artist: ID!
+  instrument: String
+  years: [String]
 }
 
 type Band {
@@ -13,14 +20,6 @@ type Band {
     members: [Member]
     website: String
     genres: [Genre]
-}
-
-input MemberInput {
-  firstName: String,
-  secondName: String,
-  middleName: String,
-  instrument: String
-  years: Int
 }
 
 input BandInput {
