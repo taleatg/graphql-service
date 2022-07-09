@@ -8,8 +8,8 @@ export class ArtistAPI extends RESTDataSource {
         this.baseURL = process.env.ARTISTS_URL;
     }
 
-    getArtists() {
-        return this.get('/').then((res: { items: Artist[] }) =>
+    getArtists(limit: number, offset: number) {
+        return this.get(`/?limit=${limit}&offset=${offset}`).then((res: { items: Artist[] }) =>
             res.items.map((artist: Artist) => ({
                 ...artist,
                 bands: artist.bandsIds,

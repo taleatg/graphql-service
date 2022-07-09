@@ -2,8 +2,8 @@ import { Artist, Band, Genre, TrackInput } from '../../../interfaces';
 
 export const trackResolvers = {
     Query: {
-        tracks: (_: any, __: any, { dataSources }: any) => {
-            return dataSources.trackAPI.getTracks();
+        tracks: (_: any, { limit, offset }: { limit: number, offset: number }, { dataSources }: any) => {
+            return dataSources.trackAPI.getTracks(limit, offset);
         },
         track: (_: any, {id}: { id: string }, { dataSources }: any) => {
             return dataSources.trackAPI.getTrack(id);

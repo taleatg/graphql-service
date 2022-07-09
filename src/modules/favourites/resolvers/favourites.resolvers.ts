@@ -2,9 +2,9 @@ import {Artist, Band, Genre, Track} from "../../../interfaces";
 
 export const favouritesResolvers = {
     Query: {
-        favourites: (_: any, __: any, { dataSources }: any) => {
+        favourites: (_: any, { limit, offset }: { limit: number, offset: number }, { dataSources }: any) => {
             if (!dataSources.favouritesAPI.context.token) return;
-            return dataSources.favouritesAPI.getFavourites();
+            return dataSources.favouritesAPI.getFavourites(limit, offset);
         },
     },
 

@@ -2,8 +2,8 @@ import { BandInput, Genre } from '../../../interfaces';
 
 export const bandResolvers = {
     Query: {
-        bands: (_: any, __: any, { dataSources }: any) => {
-            return dataSources.bandAPI.getBands();
+        bands: (_: any, { limit, offset }: { limit: number, offset: number }, { dataSources }: any) => {
+            return dataSources.bandAPI.getBands(limit, offset);
         },
         band: (_: any, { id }: { id: string }, { dataSources }: any) => {
             return dataSources.bandAPI.getBand(id);

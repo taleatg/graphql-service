@@ -8,8 +8,8 @@ export class GenreAPI extends RESTDataSource {
         this.baseURL = process.env.GENRES_URL;
     }
 
-    getGenres() {
-        return this.get('/').then((res: { items: any[] }) =>
+    getGenres(limit: number, offset: number) {
+        return this.get(`/?limit=${limit}&offset=${offset}`).then((res: { items: any[] }) =>
             res.items.map((genre: any) => ({
                 ...genre,
             }))

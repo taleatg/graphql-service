@@ -2,8 +2,8 @@ import { GenreInput } from "../../../interfaces";
 
 export const genreResolvers = {
     Query: {
-        genres: (_: any, __: any, { dataSources }: any) => {
-            return dataSources.genreAPI.getGenres();
+        genres: (_: any, { limit, offset }: { limit: number, offset: number }, { dataSources }: any) => {
+            return dataSources.genreAPI.getGenres(limit, offset);
         },
         genre: (_: any, {id}: { id: string }, { dataSources }: any) => {
             return dataSources.genreAPI.getGenre(id);

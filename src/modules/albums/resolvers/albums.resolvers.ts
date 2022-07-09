@@ -2,8 +2,8 @@ import { AlbumInput, Artist, Band, Genre, Track } from '../../../interfaces';
 
 export const albumResolvers = {
     Query: {
-        albums: (_: any, __: any, { dataSources }: any) => {
-            return dataSources.albumAPI.getAlbums();
+        albums: (_: any, { limit, offset }: { limit: number, offset: number }, { dataSources }: any) => {
+            return dataSources.albumAPI.getAlbums(limit, offset);
         },
         album: (_: any, {id}: { id: string }, { dataSources }: any) => {
             return dataSources.albumAPI.getAlbum(id);

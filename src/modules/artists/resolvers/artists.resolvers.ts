@@ -2,8 +2,8 @@ import { ArtistInput, Band } from '../../../interfaces';
 
 export const artistResolvers = {
     Query: {
-        artists: (_: any, __: any, { dataSources }: any) => {
-            return dataSources.artistAPI.getArtists();
+        artists: (_: any, { limit, offset }: { limit: number, offset: number }, { dataSources }: any) => {
+            return dataSources.artistAPI.getArtists(limit, offset);
         },
         artist: (_: any, { id }: { id: string }, { dataSources }: any) => {
             return dataSources.artistAPI.getArtist(id);

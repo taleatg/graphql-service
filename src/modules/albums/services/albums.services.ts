@@ -8,8 +8,8 @@ export class AlbumAPI extends RESTDataSource {
         this.baseURL = process.env.ALBUMS_URL;
     }
 
-    getAlbums() {
-        return this.get('/').then((res: { items: Album[] }) =>
+    getAlbums(limit: number, offset: number) {
+        return this.get(`/?limit=${limit}&offset=${offset}`).then((res: { items: Album[] }) =>
             res.items.map((album: Album) => ({
                 ...album,
                 artists: album.artistsIds,

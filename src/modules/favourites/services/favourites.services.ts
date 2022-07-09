@@ -6,8 +6,8 @@ export class FavouritesAPI extends RESTDataSource {
         this.baseURL = process.env.FAVOURITES_URL;
     }
 
-    async getFavourites() {
-        return await this.get('/', {}, { headers: { authorization: this.context.token } });
+    async getFavourites(limit: number, offset: number) {
+        return await this.get(`/?limit=${limit}&offset=${offset}`, {}, { headers: { authorization: this.context.token } });
     }
 
     async addToFavourites(type: string, id: string) {
