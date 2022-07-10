@@ -82,15 +82,15 @@ export const favouritesResolvers = {
         },
 
         removeBandToFavourites: (_: any, { id }: { id: string }, { dataSources }: any) => {
-            return dataSources.favouritesAPI.addToFavourites('bands', id);
+            return dataSources.favouritesAPI.removeToFavourites('bands', id);
         },
 
         removeArtistToFavourites: (_: any, { id }: { id: string }, { dataSources }: any) => {
-            return dataSources.favouritesAPI.addToFavourites('artists', id);
+            return dataSources.favouritesAPI.removeToFavourites('artists', id);
         },
 
         removeGenreToFavourites: (_: any, { id }: { id: string }, { dataSources }: any) => {
-            return dataSources.favouritesAPI.addToFavourites('genres', id);
+            return dataSources.favouritesAPI.removeToFavourites('genres', id);
         },
     }
 }
