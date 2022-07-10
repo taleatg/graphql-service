@@ -1,0 +1,37 @@
+import { Band, BandInput } from '../../../interfaces';
+
+const { RESTDataSource } = require('apollo-datasource-rest');
+
+export class BandAPI extends RESTDataSource {
+    constructor() {
+        super();
+        this.baseURL = process.env.BANDS_URL;
+    }
+
+    getBands(limit = 5, offset = 0) {
+        return this.get(`/?limit=${limit}&offset=${offset}`).then((res: { items: Band[] }) => {
+                return res.items.map((band: Band) => ({
+                    ...band,
+                    genres: band.genresIds,
+                    members: band.members,
+                }))
+            }
+        )
+    }
+
+    getBand(bandId: string) {
+        return this.get(`/${bandId}`);
+    }
+
+    async createBand(data: BandInput) {
+        return await this.post('/', { ...data }, { headers: { authorization: this.context.token } });
+    }
+
+    async updateBand(id: string, data: BandInput) {
+        return await this.put(`/${id}`, { ...data }, { headers: { authorization: this.context.token } });
+    }
+
+    async deleteBand(id: string) {
+        return await this.delete(`/${id}`, {}, { headers: { authorization: this.context.token } });
+    }
+}
