@@ -39,7 +39,7 @@ export const bandResolvers = {
                     firstName: value.firstName,
                     secondName: value.secondName,
                     middleName: value.middleName,
-                    instrument: members[index].instruments,
+                    instrument: members[index].instrument,
                     years: members[index].years,
                 }
             })
