@@ -1,8 +1,7 @@
 # Graphql Service
 
----
 
-##Run application
+## Run application
 
 #### 1. Installation
 
@@ -43,7 +42,6 @@ npm run start
 * Open your browser and follow the link http://localhost:3000/
 * Click on the "Query your server" button
 
----
 
 ## Examples of how the app works
 
